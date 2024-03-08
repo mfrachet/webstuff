@@ -7,7 +7,7 @@ export const Codeblock = ({ code }: CodeblockProps) => {
     <div className="h-full overflow-hidden rounded-lg ">
       <div
         dangerouslySetInnerHTML={{ __html: code }}
-        className="overflow-y-scroll [&>*]:p-2 h-full"
+        className="overflow-y-scroll [&>*]:p-2 h-full text-sm"
       />
     </div>
   );
