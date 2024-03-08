@@ -4,37 +4,37 @@ import { Layout } from "~/layouts/Layout";
 import { Button } from "~/components/Button";
 import { Textarea } from "~/components/Textarea";
 import { ActionFunction } from "@remix-run/node";
-import { encodeToBase64 } from "~/modules/b64-converter/helpers/encodeToBase64";
-import { decodeFromBase64 } from "~/modules/b64-converter/helpers/decodeFromBase64";
 import { copyClipboard } from "~/utils/copyClipboard";
 import { formatJSON } from "~/utils/formatJSON";
 import { isValidJson } from "~/utils/isValidJson";
 import { codeToHtml } from "~/utils/codeToHtml";
 import { Codeblock } from "~/components/Codeblock";
+import { ErrorBox } from "~/components/ErrorBox";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
-  const action = formData.get("action")?.toString() || "encode";
+
   const source = formData.get("source")?.toString() || "";
 
-  const result =
-    action === "encode" ? encodeToBase64(source) : decodeFromBase64(source);
-
-  if (isValidJson(result)) {
-    const formatted = await formatJSON(result);
+  if (isValidJson(source)) {
+    const formatted = await formatJSON(source);
     const html = await codeToHtml(formatted);
 
-    return { result: html, isHighlighted: true };
+    return { result: html, isHighlighted: true, formatted };
   }
 
-  return { result, isHighlighted: false };
+  return { error: "Invalid JSON." };
 };
 
-export default function B64Converter() {
+export default function JsonLint() {
   const actionData = useActionData<typeof action>();
 
   return (
-    <Layout title="Base64 encoder/decoder">
+    <Layout title="JSON lint">
+      {actionData?.error ? (
+        <ErrorBox title="An error occured">{actionData.error}</ErrorBox>
+      ) : null}
+
       <Form className="" method="post">
         <div className="grid grid-cols-2 gap-4 pb-4">
           <div>
@@ -43,25 +43,20 @@ export default function B64Converter() {
               <Textarea id="source" name={"source"} />
             </div>
 
-            <div className="flex flex-row gap-4 pt-4">
-              <Button type="submit" name="action" value="encode">
-                Encode
-              </Button>
-              <Button type="submit" name="action" value="decode">
-                Decode
-              </Button>
+            <div className="pt-4">
+              <Button type="submit">Lint</Button>
             </div>
           </div>
 
           <div>
-            <Label htmlFor="encoded-decoded">Encoded/Decoded</Label>
+            <Label htmlFor="linted">Linted</Label>
             <div className="h-96">
               {actionData?.isHighlighted ? (
                 <Codeblock code={actionData?.result || ""} />
               ) : (
                 <Textarea
-                  id="encoded-decoded"
-                  name={"encoded-decoded"}
+                  id="linted"
+                  name={"linted"}
                   disabled
                   value={actionData?.result || ""}
                 />
@@ -73,7 +68,7 @@ export default function B64Converter() {
                 type="button"
                 onClick={
                   actionData
-                    ? () => copyClipboard(actionData.result, "Result")
+                    ? () => copyClipboard(actionData.formatted, "JSON")
                     : undefined
                 }
               >
