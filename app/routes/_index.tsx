@@ -16,6 +16,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   const colorConverterLink = useRef<HTMLAnchorElement>(null);
+  const b64ConverterLink = useRef<HTMLAnchorElement>(null);
 
   return (
     <Layout title="Webstuff">
@@ -24,6 +25,14 @@ export default function Index() {
           <CardTitle>
             <Link ref={colorConverterLink} to="/color-converter">
               Color converter
+            </Link>
+          </CardTitle>
+        </Card>
+
+        <Card onClick={() => b64ConverterLink.current?.click()}>
+          <CardTitle>
+            <Link ref={b64ConverterLink} to="/b64-converter">
+              Base64 encoder/decoder
             </Link>
           </CardTitle>
         </Card>

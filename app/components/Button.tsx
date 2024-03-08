@@ -1,7 +1,11 @@
 import { HTMLAttributes } from "react";
 
 export const Button = (
-  props: HTMLAttributes<HTMLButtonElement> & { type: "submit" | "button" }
+  props: HTMLAttributes<HTMLButtonElement> & {
+    type: "submit" | "button";
+    name?: string;
+    value?: string;
+  }
 ) => {
   return (
     <button
