@@ -7,17 +7,18 @@ import { ActionFunction } from "@remix-run/node";
 import { encodeToBase64 } from "~/modules/b64-converter/helpers/encodeToBase64";
 import { decodeFromBase64 } from "~/modules/b64-converter/helpers/decodeFromBase64";
 import { copyClipboard } from "~/utils/copyClipboard";
+import { formatJSON } from "~/utils/formatJSON";
+import { isValidJson } from "~/utils/isValidJson";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const action = formData.get("action")?.toString() || "encode";
   const source = formData.get("source")?.toString() || "";
 
-  if (action === "encode") {
-    return { result: encodeToBase64(source) };
-  }
+  const result =
+    action === "encode" ? encodeToBase64(source) : decodeFromBase64(source);
 
-  return { result: decodeFromBase64(source) };
+  return { result: isValidJson(result) ? await formatJSON(result) : result };
 };
 
 export default function B64Converter() {
