@@ -32,6 +32,8 @@ export interface CardTitleProps {
 
 export const CardTitle = ({ children, as: Root = "h2" }: CardTitleProps) => {
   return (
-    <Root className="text-lg font-semibold tracking-tight">{children}</Root>
+    <Root className="text-lg font-semibold tracking-tight pb-2">
+      {children}
+    </Root>
   );
 };

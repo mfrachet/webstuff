@@ -1,5 +1,5 @@
-import type { MetaFunction } from "@remix-run/node";
-import { Link } from "@remix-run/react";
+import type { ActionFunction, MetaFunction } from "@remix-run/node";
+import { Link, useActionData } from "@remix-run/react";
 import { useRef } from "react";
 import { Card, CardTitle } from "~/components/Card";
 import { Layout } from "~/layouts/Layout";

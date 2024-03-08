@@ -1,5 +1,7 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LinksFunction } from "@remix-run/node";
+import { Toaster } from "@/components/ui/toaster";
+
 import {
   Links,
   LiveReload,
@@ -26,6 +28,7 @@ export default function App() {
       </head>
       <body>
         <Outlet />
+        <Toaster />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

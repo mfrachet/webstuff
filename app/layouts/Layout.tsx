@@ -11,7 +11,7 @@ export const Layout = ({ children, title }: LayoutProps) => {
     <div className="container mx-auto py-8">
       <Title>{title}</Title>
 
-      <div className="pt-4">{children}</div>
+      <div className="pt-8 flex flex-col gap-4">{children}</div>
     </div>
   );
 };
