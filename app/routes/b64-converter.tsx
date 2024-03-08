@@ -9,6 +9,8 @@ import { decodeFromBase64 } from "~/modules/b64-converter/helpers/decodeFromBase
 import { copyClipboard } from "~/utils/copyClipboard";
 import { formatJSON } from "~/utils/formatJSON";
 import { isValidJson } from "~/utils/isValidJson";
+import { codeToHtml } from "~/utils/codeToHtml";
+import { Codeblock } from "~/components/Codeblock";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -18,7 +20,14 @@ export const action: ActionFunction = async ({ request }) => {
   const result =
     action === "encode" ? encodeToBase64(source) : decodeFromBase64(source);
 
-  return { result: isValidJson(result) ? await formatJSON(result) : result };
+  if (isValidJson(result)) {
+    const formatted = await formatJSON(result);
+    const html = await codeToHtml(formatted);
+
+    return { result: html, isHighlighted: true };
+  }
+
+  return { result, isHighlighted: false };
 };
 
 export default function B64Converter() {
@@ -30,7 +39,9 @@ export default function B64Converter() {
         <div className="grid grid-cols-2 gap-4 pb-4">
           <div>
             <Label htmlFor="source">Source</Label>
-            <Textarea id="source" name={"source"} />
+            <div className="h-96">
+              <Textarea id="source" name={"source"} />
+            </div>
 
             <div className="flex flex-row gap-4 pt-4">
               <Button type="submit" name="action" value="encode">
@@ -44,12 +55,18 @@ export default function B64Converter() {
 
           <div>
             <Label htmlFor="encoded-decoded">Encoded/Decoded</Label>
-            <Textarea
-              id="encoded-decoded"
-              name={"encoded-decoded"}
-              disabled
-              value={actionData?.result || ""}
-            />
+            <div className="h-96">
+              {actionData?.isHighlighted ? (
+                <Codeblock code={actionData?.result || ""} />
+              ) : (
+                <Textarea
+                  id="encoded-decoded"
+                  name={"encoded-decoded"}
+                  disabled
+                  value={actionData?.result || ""}
+                />
+              )}
+            </div>
 
             <div className="pt-4">
               <Button

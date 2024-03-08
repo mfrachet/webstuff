@@ -15,7 +15,7 @@ export const Textarea = (
   return (
     <textarea
       {...props}
-      className="rounded-lg border-slate-200 px-2 border min-h-40 py-1 block w-full bg-white"
+      className="rounded-lg border-slate-200 px-2 border h-full py-1 block w-full bg-white"
     />
   );
 };
