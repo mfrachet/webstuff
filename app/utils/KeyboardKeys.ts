@@ -1,0 +1,16 @@
+export type KeyboardKeys =
+  | "ArrowDown"
+  | "ArrowUp"
+  | "ArrowRight"
+  | "ArrowLeft"
+  | "Escape"
+  | "Enter"
+  | " "
+  | "Tab"
+  | "End"
+  | "Home"
+  | "Delete"
+  | "PageUp"
+  | "PageDown"
+  | "Backspace"
+  | "Clear";
