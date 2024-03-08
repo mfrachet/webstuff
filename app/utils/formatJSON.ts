@@ -8,7 +8,5 @@ export const formatJSON = async (code: string) => {
     tabWidth: 2,
   });
 
-  console.log("lol", formatted);
-
   return formatted;
 };
