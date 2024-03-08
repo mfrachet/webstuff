@@ -1,9 +1,17 @@
 import { ReactNode } from "react";
+import { Title } from "~/components/Title";
 
 export interface LayoutProps {
   children: ReactNode;
+  title: string;
 }
 
-export const Layout = ({ children }: LayoutProps) => {
-  return <div className="container mx-auto py-8">{children}</div>;
+export const Layout = ({ children, title }: LayoutProps) => {
+  return (
+    <div className="container mx-auto py-8">
+      <Title>{title}</Title>
+
+      <div className="pt-4">{children}</div>
+    </div>
+  );
 };

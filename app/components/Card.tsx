@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import { ElementType, ReactNode, useRef } from "react";
-import { useKeydown } from "~/hooks/useKeydown";
+import { ElementType, ReactNode } from "react";
+import { keydown } from "~/utils/keydown";
 
 export interface CardProps {
   children: ReactNode;
@@ -8,12 +8,11 @@ export interface CardProps {
 }
 
 export const Card = ({ children, onClick }: CardProps) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useKeydown(cardRef, "Enter", onClick);
-
   return (
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
+      onKeyDown={keydown("Enter", onClick)}
+      onClick={onClick}
       // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
       tabIndex={onClick ? 0 : undefined}
       className={clsx(
