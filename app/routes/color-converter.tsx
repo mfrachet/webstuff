@@ -14,6 +14,7 @@ import {
   rgbaToHexa,
   rgbaToHsl,
   rgbaToHsla,
+  rgbaToRgb,
 } from "~/modules/color-converter/helpers/toOtherFormat";
 import { ColorButton } from "~/modules/color-converter/components/ColorButton";
 import { List, ListItem } from "~/components/List";
@@ -41,7 +42,7 @@ export const action: ActionFunction = async ({ request }) => {
       format,
       hex: rgbaToHex(rgba),
       hexa: rgbaToHexa(rgba),
-      rgb: rgba.replace(",1)", ")"),
+      rgb: rgbaToRgb(rgba),
       rgba: rgba,
       hsl: rgbaToHsl(rgba),
       hsla: rgbaToHsla(rgba),

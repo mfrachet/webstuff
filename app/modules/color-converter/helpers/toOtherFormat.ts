@@ -99,3 +99,16 @@ export function rgbaToHsla(rgba: string) {
   l = Math.round(l * 100);
   return `hsla(${h}, ${s}%, ${l}%, ${a})`;
 }
+
+export const rgbaToRgb = (color: string) => {
+  const match = color.match(
+    /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.?\d*))?\)$/
+  );
+
+  const red = parseInt(match![1], 10);
+  const green = parseInt(match![2], 10);
+  const blue = parseInt(match![3], 10);
+
+  // Return the RGB color format
+  return `rgb(${red}, ${green}, ${blue})`;
+};
