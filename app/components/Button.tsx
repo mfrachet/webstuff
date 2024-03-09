@@ -1,16 +1,26 @@
+import clsx from "clsx";
 import { HTMLAttributes } from "react";
 
-export const Button = (
-  props: HTMLAttributes<HTMLButtonElement> & {
-    type: "submit" | "button";
-    name?: string;
-    value?: string;
-  }
-) => {
+const variantClass = {
+  primary: "text-white bg-slate-900 hover:bg-slate-800 active:bg-slate-700",
+  secondary:
+    "text-slate-900 bg-white border border-slate-900 hover:bg-slate-50 active:bg-slate-100",
+};
+
+export const Button = ({
+  variant = "primary",
+  ...props
+}: HTMLAttributes<HTMLButtonElement> & {
+  type: "submit" | "button";
+  name?: string;
+  value?: string;
+  variant?: "primary" | "secondary";
+}) => {
+  const v = variantClass[variant];
   return (
     <button
       {...props}
-      className="h-10 rounded-lg px-4 inline-block text-white bg-slate-900 hover:bg-slate-800 active:bg-slate-700 cursor-pointer"
+      className={clsx("h-10 rounded-lg px-4 inline-block  cursor-pointer", v)}
     />
   );
 };

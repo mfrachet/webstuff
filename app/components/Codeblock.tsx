@@ -2,6 +2,7 @@ import { basicSetup, EditorView } from "codemirror";
 import { Compartment, EditorState } from "@codemirror/state";
 import { json } from "@codemirror/lang-json";
 import { useEffect, useRef, useState } from "react";
+import { CopyButton } from "./CopyButton";
 
 export interface CodeblockProps {
   code: string;
@@ -59,7 +60,11 @@ export const Codeblock = ({ code, name }: CodeblockProps) => {
   }, [code]);
 
   return (
-    <div className="h-full border border-slate-200 rounded-lg ">
+    <div className="h-full border border-slate-200 rounded-lg relative">
+      <div className="absolute top-2 right-2 z-10">
+        <CopyButton toCopy={content} toast="Code" />
+      </div>
+
       <input type="hidden" name={name} value={content} />
       <div ref={root} className="overflow-y-scroll [&>*]:p-2 h-full text-sm" />
     </div>

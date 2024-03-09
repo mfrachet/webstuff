@@ -6,10 +6,10 @@ import { Textarea } from "~/components/Textarea";
 import { ActionFunction } from "@remix-run/node";
 import { encodeToBase64 } from "~/modules/b64-converter/helpers/encodeToBase64";
 import { decodeFromBase64 } from "~/modules/b64-converter/helpers/decodeFromBase64";
-import { copyClipboard } from "~/utils/copyClipboard";
 import { formatJSON } from "~/utils/formatJSON";
 import { isValidJson } from "~/utils/isValidJson";
 import { Codeblock } from "~/components/Codeblock";
+import { CopyButton } from "~/components/CopyButton";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -57,26 +57,21 @@ export default function B64Converter() {
               {actionData?.isHighlighted ? (
                 <Codeblock code={actionData?.result || ""} name="result" />
               ) : (
-                <Textarea
-                  id="encoded-decoded"
-                  name={"encoded-decoded"}
-                  disabled
-                  value={actionData?.result || ""}
-                />
+                <div className="h-full relative">
+                  <div className="absolute top-2 right-2 z-10">
+                    <CopyButton
+                      toCopy={actionData?.result || ""}
+                      toast="Content"
+                    />
+                  </div>
+                  <Textarea
+                    id="encoded-decoded"
+                    name={"encoded-decoded"}
+                    disabled
+                    value={actionData?.result || ""}
+                  />
+                </div>
               )}
-            </div>
-
-            <div className="pt-4">
-              <Button
-                type="button"
-                onClick={
-                  actionData
-                    ? () => copyClipboard(actionData.result, "Result")
-                    : undefined
-                }
-              >
-                Copy result to clipboard
-              </Button>
             </div>
           </div>
         </div>

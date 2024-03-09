@@ -2,7 +2,6 @@ import { Form, useActionData } from "@remix-run/react";
 import { Layout } from "~/layouts/Layout";
 import { Button } from "~/components/Button";
 import { ActionFunction } from "@remix-run/node";
-import { copyClipboard } from "~/utils/copyClipboard";
 import { formatJSON } from "~/utils/formatJSON";
 import { isValidJson } from "~/utils/isValidJson";
 import { Codeblock } from "~/components/Codeblock";
@@ -36,18 +35,8 @@ export default function JsonLint() {
           <Codeblock code={actionData?.result || ""} name="code" />
         </div>
 
-        <div className="pt-4 flex flex-row gap-4">
+        <div className="pt-4 ">
           <Button type="submit">Lint</Button>
-          <Button
-            type="button"
-            onClick={
-              actionData
-                ? () => copyClipboard(actionData.formatted, "JSON")
-                : undefined
-            }
-          >
-            Copy result to clipboard
-          </Button>
         </div>
       </Form>
     </Layout>
