@@ -9,7 +9,6 @@ import { decodeFromBase64 } from "~/modules/b64-converter/helpers/decodeFromBase
 import { copyClipboard } from "~/utils/copyClipboard";
 import { formatJSON } from "~/utils/formatJSON";
 import { isValidJson } from "~/utils/isValidJson";
-import { codeToHtml } from "~/utils/codeToHtml";
 import { Codeblock } from "~/components/Codeblock";
 
 export const action: ActionFunction = async ({ request }) => {
@@ -22,9 +21,8 @@ export const action: ActionFunction = async ({ request }) => {
 
   if (isValidJson(result)) {
     const formatted = await formatJSON(result);
-    const html = await codeToHtml(formatted);
 
-    return { result: html, isHighlighted: true };
+    return { result: formatted, isHighlighted: true };
   }
 
   return { result, isHighlighted: false };
@@ -57,7 +55,7 @@ export default function B64Converter() {
             <Label htmlFor="encoded-decoded">Encoded/Decoded</Label>
             <div className="h-96">
               {actionData?.isHighlighted ? (
-                <Codeblock code={actionData?.result || ""} />
+                <Codeblock code={actionData?.result || ""} name="result" />
               ) : (
                 <Textarea
                   id="encoded-decoded"
