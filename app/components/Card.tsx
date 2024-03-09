@@ -16,7 +16,7 @@ export const Card = ({ children, onClick }: CardProps) => {
       // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
       tabIndex={onClick ? 0 : undefined}
       className={clsx(
-        "shadow-md rounded-lg border border-slate-200 px-4 py-2",
+        "shadow-md rounded-lg border border-slate-200 px-4 py-3",
         onClick ? "hover:bg-slate-50 active:bg-slate-100 cursor-pointer" : ""
       )}
     >
@@ -32,8 +32,19 @@ export interface CardTitleProps {
 
 export const CardTitle = ({ children, as: Root = "h2" }: CardTitleProps) => {
   return (
-    <Root className="text-lg font-semibold tracking-tight pb-2">
+    <Root className="text-lg font-semibold tracking-tight pb-1">
       {children}
     </Root>
+  );
+};
+
+export interface CardTextProps {
+  children: ReactNode;
+  as?: ElementType;
+}
+
+export const CardText = ({ children, as: Root = "p" }: CardTextProps) => {
+  return (
+    <Root className="text-sm text-slate-700 tracking-tight">{children}</Root>
   );
 };

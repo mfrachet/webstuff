@@ -1,4 +1,4 @@
-import { Card, CardTitle } from "~/components/Card";
+import { Card, CardText, CardTitle } from "~/components/Card";
 import { ToolMetadata } from "../type";
 import { Link } from "@remix-run/react";
 import { useRef } from "react";
@@ -11,11 +11,18 @@ export const ToolCard = ({ toolmetadata }: ToolCardProps) => {
   const linkRef = useRef<HTMLAnchorElement>(null);
   return (
     <Card onClick={() => linkRef.current?.click()}>
-      <CardTitle>
-        <Link ref={linkRef} to={toolmetadata.link}>
-          {toolmetadata.label}
-        </Link>
-      </CardTitle>
+      <div className="flex flex-row gap-2">
+        <div className="pt-1">{toolmetadata.icon}</div>
+
+        <div>
+          <CardTitle>
+            <Link ref={linkRef} to={toolmetadata.link}>
+              {toolmetadata.label}
+            </Link>
+          </CardTitle>
+          <CardText>{toolmetadata.description}</CardText>
+        </div>
+      </div>
     </Card>
   );
 };
