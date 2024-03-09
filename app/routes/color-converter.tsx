@@ -16,6 +16,7 @@ import {
   rgbaToHsla,
 } from "~/modules/color-converter/helpers/toOtherFormat";
 import { ColorButton } from "~/modules/color-converter/components/ColorButton";
+import { List, ListItem } from "~/components/List";
 
 export const meta: MetaFunction = () => {
   return [
@@ -71,38 +72,65 @@ export default function ColorConverter() {
       </Form>
 
       {actionData?.format ? (
-        <div>
+        <div className="pt-4">
           <Badge>Format found: {actionData.format}</Badge>
         </div>
       ) : null}
 
       {actionData?.hasResolved && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Card>
-            <CardTitle>Hex</CardTitle>
-            <ColorButton color={actionData.hex}>{actionData.hex}</ColorButton>
-          </Card>
-          <Card>
-            <CardTitle>Hexa</CardTitle>
-            <ColorButton color={actionData.hexa}>{actionData.hexa}</ColorButton>
-          </Card>
-          <Card>
-            <CardTitle>Rgb</CardTitle>
-            <ColorButton color={actionData.rgb}>{actionData.rgb}</ColorButton>
-          </Card>
-          <Card>
-            <CardTitle>Rgba</CardTitle>
-            <ColorButton color={actionData.rgba}>{actionData.rgba}</ColorButton>
-          </Card>
-          <Card>
-            <CardTitle>HSL</CardTitle>
-            <ColorButton color={actionData.hsl}>{actionData.hsl}</ColorButton>
-          </Card>
-          <Card>
-            <CardTitle>HSLA</CardTitle>
-            <ColorButton color={actionData.hsla}>{actionData.hsla}</ColorButton>
-          </Card>
-        </div>
+        <List>
+          <ListItem>
+            <div className="flex flex-row items-center gap-2">
+              <div className="w-12">Hex</div>
+              <ColorButton color={actionData.hex}>{actionData.hex}</ColorButton>
+            </div>
+          </ListItem>
+
+          <ListItem>
+            <div className="flex flex-row items-center gap-2">
+              <div className="w-12">Hexa</div>
+
+              <ColorButton color={actionData.hexa}>
+                {actionData.hexa}
+              </ColorButton>
+            </div>
+          </ListItem>
+
+          <ListItem>
+            <div className="flex flex-row items-center gap-2">
+              <div className="w-12">Rgb</div>
+
+              <ColorButton color={actionData.rgb}>{actionData.rgb}</ColorButton>
+            </div>
+          </ListItem>
+
+          <ListItem>
+            <div className="flex flex-row items-center gap-2">
+              <div className="w-12">Rgba</div>
+
+              <ColorButton color={actionData.rgba}>
+                {actionData.rgba}
+              </ColorButton>
+            </div>
+          </ListItem>
+
+          <ListItem>
+            <div className="flex flex-row items-center gap-2">
+              <div className="w-12">Hsl</div>
+
+              <ColorButton color={actionData.hsl}>{actionData.hsl}</ColorButton>
+            </div>
+          </ListItem>
+          <ListItem>
+            <div className="flex flex-row items-center gap-2">
+              <div className="w-12">Hsla</div>
+
+              <ColorButton color={actionData.hsla}>
+                {actionData.hsla}
+              </ColorButton>
+            </div>
+          </ListItem>
+        </List>
       )}
     </Layout>
   );

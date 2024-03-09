@@ -1,4 +1,4 @@
-import { FileCode2, FileJson2, Palette } from "lucide-react";
+import { CaseSensitive, FileCode2, FileJson2, Palette } from "lucide-react";
 import { ToolMetadata } from "./type";
 
 export const toolsMetadata: Array<ToolMetadata> = [
@@ -19,5 +19,12 @@ export const toolsMetadata: Array<ToolMetadata> = [
     description: "Lint nested JSON into something readable.",
     link: "/json-lint",
     icon: <FileJson2 />,
+  },
+  {
+    label: "String generator",
+    description:
+      "Generate random strings, ideal for secrets and env variables.",
+    link: "/string-generator",
+    icon: <CaseSensitive />,
   },
 ];

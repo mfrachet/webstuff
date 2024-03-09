@@ -1,12 +1,7 @@
 import { HTMLAttributes } from "react";
 
-export interface TextInputProps {
-  id?: string;
-  name: string;
-}
-
 export const TextInput = (
-  props: HTMLAttributes<HTMLInputElement> & { name: string }
+  props: HTMLAttributes<HTMLInputElement> & { name: string; type?: string }
 ) => {
   return (
     <input
