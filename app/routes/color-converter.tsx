@@ -2,7 +2,6 @@ import { Badge } from "@/components/ui/badge";
 import type { ActionFunction, MetaFunction } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";
 import { Button } from "~/components/Button";
-import { Card, CardTitle } from "~/components/Card";
 import { ErrorBox } from "~/components/ErrorBox";
 import { Label } from "~/components/Label";
 import { TextInput } from "~/components/TextInput";
