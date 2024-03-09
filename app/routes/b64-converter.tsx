@@ -34,7 +34,7 @@ export default function B64Converter() {
   return (
     <Layout title="Base64 encoder/decoder">
       <Form className="" method="post">
-        <div className="grid grid-cols-2 gap-4 pb-4">
+        <div className="grid lg:grid-cols-2 gap-4 pb-4">
           <div>
             <Label htmlFor="source">Source</Label>
             <div className="h-96">

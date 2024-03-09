@@ -9,7 +9,7 @@ export interface LayoutProps {
 
 export const Layout = ({ children, title }: LayoutProps) => {
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 px-4">
       <Nav />
       <div className="h-12" />
 

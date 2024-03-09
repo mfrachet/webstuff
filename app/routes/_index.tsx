@@ -16,7 +16,7 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <Layout title="Webstuff">
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         {toolsMetadata.map((toolmetadata) => (
           <ToolCard toolmetadata={toolmetadata} key={toolmetadata.label} />
         ))}
