@@ -13,7 +13,7 @@ export const Nav = () => {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link to="/">Home</Link>
+            <Link to="/">Tools</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>

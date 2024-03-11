@@ -16,7 +16,7 @@ export const ToolCard = ({ toolmetadata }: ToolCardProps) => {
 
         <div>
           <CardTitle>
-            <Link ref={linkRef} to={toolmetadata.link}>
+            <Link ref={linkRef} to={`/tools${toolmetadata.link}`}>
               {toolmetadata.label}
             </Link>
           </CardTitle>
