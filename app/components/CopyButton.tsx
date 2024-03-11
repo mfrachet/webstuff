@@ -13,7 +13,6 @@ export const CopyButton = ({ toCopy, toast }: CopyButtonProps) => {
       type={"button"}
       variant="secondary"
       onClick={() => {
-        console.log("lol", toCopy);
         copyClipboard(toCopy, toast);
       }}
       aria-label="Copy to clipboard"

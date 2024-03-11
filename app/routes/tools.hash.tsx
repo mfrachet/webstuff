@@ -65,7 +65,9 @@ export default function Hash() {
         <Button type="submit">Generate</Button>
       </Form>
 
-      {actionData?.result && <Textarea readOnly>{actionData.result}</Textarea>}
+      {actionData?.result && (
+        <Textarea readOnly value={actionData.result}></Textarea>
+      )}
     </Layout>
   );
 }
