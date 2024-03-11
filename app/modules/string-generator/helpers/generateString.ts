@@ -1,7 +1,4 @@
-const alphabet =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
-
-export const generateString = (length: number) => {
+export const generateString = (alphabet: string, length: number) => {
   let result = "";
 
   for (let i = 0; i < length; i++) {
