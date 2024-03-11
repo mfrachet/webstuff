@@ -55,7 +55,11 @@ export default function B64Converter() {
             <Label htmlFor="encoded-decoded">Encoded/Decoded</Label>
             <div className="h-96">
               {actionData?.isHighlighted ? (
-                <Codeblock code={actionData?.result || ""} name="result" />
+                <Codeblock
+                  code={actionData?.result || ""}
+                  name="result"
+                  lang="JSON"
+                />
               ) : (
                 <div className="h-full relative">
                   <div className="absolute top-2 right-2 z-10">

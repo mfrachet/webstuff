@@ -32,7 +32,7 @@ export default function JsonLint() {
 
       <Form className="" method="post">
         <div className="h-96">
-          <Codeblock code={actionData?.result || ""} name="code" />
+          <Codeblock code={actionData?.result || ""} name="code" lang="JSON" />
         </div>
 
         <div className="pt-4 ">

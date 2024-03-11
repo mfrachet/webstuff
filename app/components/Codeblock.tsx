@@ -1,15 +1,17 @@
 import { basicSetup, EditorView } from "codemirror";
 import { Compartment, EditorState } from "@codemirror/state";
 import { json } from "@codemirror/lang-json";
+import { javascript } from "@codemirror/lang-javascript";
 import { useEffect, useRef, useState } from "react";
 import { CopyButton } from "./CopyButton";
 
 export interface CodeblockProps {
   code: string;
   name: string;
+  lang: "JSON" | "JS";
 }
 
-export const Codeblock = ({ code, name }: CodeblockProps) => {
+export const Codeblock = ({ code, name, lang }: CodeblockProps) => {
   const root = useRef<HTMLDivElement>(null);
   const editorViewRef = useRef<EditorView>();
   const [content, setContent] = useState(code);
@@ -18,12 +20,17 @@ export const Codeblock = ({ code, name }: CodeblockProps) => {
     if (!root.current) return;
 
     const language = new Compartment();
+    const ext =
+      lang === "JSON"
+        ? language.of(json())
+        : language.of(javascript({ jsx: true, typescript: true }));
 
     const state = EditorState.create({
       doc: content,
       extensions: [
         basicSetup,
-        language.of(json()),
+        ext,
+
         EditorView.updateListener.of((update) => {
           if (update.docChanged) {
             const currentContent = update.state.doc.toString();
@@ -43,7 +50,7 @@ export const Codeblock = ({ code, name }: CodeblockProps) => {
     return () => {
       view.destroy();
     };
-  }, []);
+  }, [lang]);
 
   useEffect(() => {
     if (!editorViewRef.current) return;
