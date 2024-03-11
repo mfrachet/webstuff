@@ -9,7 +9,7 @@ import { formatJSON } from "~/utils/formatJSON";
 import { isValidJson } from "~/utils/isValidJson";
 import { Codeblock } from "~/components/Codeblock";
 import { CopyButton } from "~/components/CopyButton";
-import { Textarea } from "@/components/ui/textarea";
+import { Textarea } from "~/components/Textarea";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -69,7 +69,6 @@ export default function B64Converter() {
                     />
                   </div>
                   <Textarea
-                    className="h-full"
                     id="encoded-decoded"
                     name={"encoded-decoded"}
                     disabled

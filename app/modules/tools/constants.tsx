@@ -1,4 +1,10 @@
-import { CaseSensitive, FileCode2, FileJson2, Palette } from "lucide-react";
+import {
+  CaseSensitive,
+  FileCode2,
+  FileJson2,
+  Hash,
+  Palette,
+} from "lucide-react";
 import { ToolMetadata } from "./type";
 
 export const toolsMetadata: Array<ToolMetadata> = [
@@ -26,5 +32,11 @@ export const toolsMetadata: Array<ToolMetadata> = [
       "Generate random strings, ideal for secrets and env variables.",
     link: "/string-generator",
     icon: <CaseSensitive />,
+  },
+  {
+    label: "Hash",
+    description: "Generate hashes from strings",
+    link: "/hash",
+    icon: <Hash />,
   },
 ];

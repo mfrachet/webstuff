@@ -7,7 +7,7 @@ import { List, ListItem } from "~/components/List";
 import { generateString } from "~/modules/string-generator/helpers/generateString";
 import { CopyButton } from "~/components/CopyButton";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Textarea } from "~/components/Textarea";
 
 const defaultAlphabet =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
@@ -48,7 +48,6 @@ export default function B64Converter() {
           <div className="shrink-0 w-96">
             <Label htmlFor="alphabet">Alphabet</Label>
             <Textarea
-              className="min-h-32"
               id="alphabet"
               name={"alphabet"}
               defaultValue={defaultAlphabet}

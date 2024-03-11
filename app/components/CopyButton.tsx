@@ -3,7 +3,7 @@ import { Button } from "./Button";
 import { Copy } from "lucide-react";
 
 export interface CopyButtonProps {
-  toCopy: string;
+  toCopy: string | number;
   toast?: string;
 }
 
@@ -12,10 +12,14 @@ export const CopyButton = ({ toCopy, toast }: CopyButtonProps) => {
     <Button
       type={"button"}
       variant="secondary"
-      onClick={() => copyClipboard(toCopy, toast)}
+      onClick={() => {
+        console.log("lol", toCopy);
+        copyClipboard(toCopy, toast);
+      }}
       aria-label="Copy to clipboard"
+      size="S"
     >
-      <Copy />
+      <Copy className="h-3" />
     </Button>
   );
 };
