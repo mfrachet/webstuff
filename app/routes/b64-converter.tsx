@@ -2,7 +2,6 @@ import { Label } from "~/components/Label";
 import { Form, useActionData } from "@remix-run/react";
 import { Layout } from "~/layouts/Layout";
 import { Button } from "~/components/Button";
-import { Textarea } from "~/components/Textarea";
 import { ActionFunction } from "@remix-run/node";
 import { encodeToBase64 } from "~/modules/b64-converter/helpers/encodeToBase64";
 import { decodeFromBase64 } from "~/modules/b64-converter/helpers/decodeFromBase64";
@@ -10,6 +9,7 @@ import { formatJSON } from "~/utils/formatJSON";
 import { isValidJson } from "~/utils/isValidJson";
 import { Codeblock } from "~/components/Codeblock";
 import { CopyButton } from "~/components/CopyButton";
+import { Textarea } from "@/components/ui/textarea";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -38,7 +38,7 @@ export default function B64Converter() {
           <div>
             <Label htmlFor="source">Source</Label>
             <div className="h-96">
-              <Textarea id="source" name={"source"} />
+              <Textarea id="source" name={"source"} className="h-full" />
             </div>
 
             <div className="flex flex-row gap-4 pt-4">
@@ -65,6 +65,7 @@ export default function B64Converter() {
                     />
                   </div>
                   <Textarea
+                    className="h-full"
                     id="encoded-decoded"
                     name={"encoded-decoded"}
                     disabled

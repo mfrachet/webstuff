@@ -4,7 +4,6 @@ import { Form, useActionData } from "@remix-run/react";
 import { Button } from "~/components/Button";
 import { ErrorBox } from "~/components/ErrorBox";
 import { Label } from "~/components/Label";
-import { TextInput } from "~/components/TextInput";
 import { Layout } from "~/layouts/Layout";
 import { getRgba } from "~/modules/color-converter/helpers/getRgba";
 import { getFormat } from "~/modules/color-converter/helpers/getFormat";
@@ -17,6 +16,7 @@ import {
 } from "~/modules/color-converter/helpers/toOtherFormat";
 import { ColorButton } from "~/modules/color-converter/components/ColorButton";
 import { List, ListItem } from "~/components/List";
+import { Input } from "@/components/ui/input";
 
 export const meta: MetaFunction = () => {
   return [
@@ -65,7 +65,7 @@ export default function ColorConverter() {
       <Form className="flex flex-row gap-2 items-end" method="post">
         <div>
           <Label htmlFor="color">Color</Label>
-          <TextInput id="color" name={"color"} />
+          <Input id="color" name={"color"} />
         </div>
 
         <Button type="submit">Convert</Button>

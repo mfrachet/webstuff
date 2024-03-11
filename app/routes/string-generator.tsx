@@ -3,10 +3,10 @@ import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import { Layout } from "~/layouts/Layout";
 import { Button } from "~/components/Button";
 import { ActionFunction, LoaderFunction } from "@remix-run/node";
-import { TextInput } from "~/components/TextInput";
 import { List, ListItem } from "~/components/List";
 import { generateString } from "~/modules/string-generator/helpers/generateString";
 import { CopyButton } from "~/components/CopyButton";
+import { Input } from "@/components/ui/input";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -42,7 +42,7 @@ export default function B64Converter() {
         <div className="flex flex-row gap-4">
           <div>
             <Label htmlFor="number">Number of string to generate</Label>
-            <TextInput
+            <Input
               type="number"
               id="number"
               name={"number"}
@@ -52,12 +52,7 @@ export default function B64Converter() {
 
           <div>
             <Label htmlFor="count">Length of the strings</Label>
-            <TextInput
-              type="number"
-              id="count"
-              name={"count"}
-              defaultValue={20}
-            />
+            <Input type="number" id="count" name={"count"} defaultValue={20} />
           </div>
         </div>
 
