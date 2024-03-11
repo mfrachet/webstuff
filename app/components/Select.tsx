@@ -12,11 +12,19 @@ export interface SelectProps {
   label: string;
   name: string;
   options: Array<{ label: string; value: string }>;
+  value?: string;
+  onValueChange?: (str: string) => void;
 }
 
-export const Select = ({ name, options, label }: SelectProps) => {
+export const Select = ({
+  name,
+  options,
+  label,
+  value,
+  onValueChange,
+}: SelectProps) => {
   return (
-    <RSelect name={name}>
+    <RSelect name={name} value={value} onValueChange={onValueChange}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder={label} />
       </SelectTrigger>
