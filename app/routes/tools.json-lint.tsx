@@ -3,7 +3,6 @@ import { Layout } from "~/layouts/Layout";
 import { Button } from "~/components/Button";
 import { ActionFunction } from "@remix-run/node";
 import { formatJSON } from "~/utils/formatJSON";
-import { isValidJson } from "~/utils/isValidJson";
 import { Codeblock } from "~/components/Codeblock";
 import { ErrorBox } from "~/components/ErrorBox";
 
@@ -12,13 +11,13 @@ export const action: ActionFunction = async ({ request }) => {
 
   const code = formData.get("code")?.toString() || "";
 
-  if (isValidJson(code)) {
+  try {
     const formatted = await formatJSON(code);
 
     return { result: formatted };
+  } catch {
+    return { error: "Invalid JSON." };
   }
-
-  return { error: "Invalid JSON." };
 };
 
 export default function JsonLint() {
